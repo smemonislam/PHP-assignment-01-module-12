@@ -58,7 +58,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $trip->bus->bus_name }}</td>
-                                        <td>{{ $trip->road->origin }}</td>
+                                        <td>{{ $trip->location->origin }}</td>
                                         <td>{{ $trip->departure_time }}</td>
                                         <td>{{ $trip->arrival_time }}</td>
                                         <td>{{ $trip->date }}</td>

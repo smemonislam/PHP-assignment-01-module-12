@@ -86,16 +86,16 @@
                                     <div class="col-lg-6 mb-3">
                                         <div class="mb-lg-0">
                                             <label for="" class="form-label">
-                                                Road List
+                                                locations List
                                                 <span class="text-danger">
                                                     *
                                                 </span>
                                             </label>
                                             <div class="input-group">
-                                                <select class="form-select" name="road_id">
-                                                    <option selected disabled>Choose Road...</option>
-                                                    @foreach($roads as $road)
-                                                        <option value="{{ $road->id }}">{{ $road->origin }}</option>
+                                                <select class="form-select" name="location_id">
+                                                    <option selected disabled>Choose locations...</option>
+                                                    @foreach($locations as $location)
+                                                        <option value="{{ $location->id }}">{{ $location->origin }}</option>
                                                     @endforeach
                                                 </select>
                                             </button>
@@ -126,7 +126,7 @@
                                                 Date
                                                 <span class="text-danger">*</span>
                                             </label>
-                                            <input type="date" name="date" class="form-control" value="{{ old('date') }}">
+                                            <input type="datetime-local" name="date" class="form-control" value="{{ old('date') }}">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-info">Save</button>
