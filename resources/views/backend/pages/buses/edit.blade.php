@@ -83,7 +83,7 @@
                                             <input type="text" name="bus_model" class="form-control" value="{{ old('bus_model', $bus->bus_model) }}">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info">Save</button>
+                                    <button type="submit" class="btn btn-info">Update</button>
                                 </div>
                             </form>
                         </div>
