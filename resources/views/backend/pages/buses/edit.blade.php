@@ -83,6 +83,15 @@
                                             <input type="text" name="bus_model" class="form-control" value="{{ old('bus_model', $bus->bus_model) }}">
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="mb-lg-0">
+                                            <label for="choices-status-input" class="form-label">
+                                                Total Seat
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" name="total_seat" class="form-control" value="{{ old('total_seat', $bus->total_seat) }}">
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn btn-info">Update</button>
                                 </div>
                             </form>

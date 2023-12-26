@@ -14,7 +14,8 @@ class BusController extends Controller
      */
     public function index()
     {
-        //
+        $bus_list = Bus::latest()->get();
+        return view('backend.pages.buses.index', compact('bus_list'));
     }
 
     /**
@@ -22,7 +23,7 @@ class BusController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.buses.create');
     }
 
     /**
@@ -30,7 +31,9 @@ class BusController extends Controller
      */
     public function store(StoreBusRequest $request)
     {
-        //
+        Bus::create($request->validated());
+
+        return redirect()->back()->with('success', 'Buses created successfully.');
     }
 
     /**
@@ -46,7 +49,7 @@ class BusController extends Controller
      */
     public function edit(Bus $bus)
     {
-        //
+        return view('backend.pages.buses.edit', compact('bus'));
     }
 
     /**
@@ -54,7 +57,9 @@ class BusController extends Controller
      */
     public function update(UpdateBusRequest $request, Bus $bus)
     {
-        //
+        $bus->update($request->validated());
+
+        return redirect()->back()->with('success', 'Buses updated successfully.');
     }
 
     /**
@@ -62,6 +67,7 @@ class BusController extends Controller
      */
     public function destroy(Bus $bus)
     {
-        //
+        $bus->delete();
+        return redirect()->back()->with('success', 'Buses deleted successfully.');
     }
 }

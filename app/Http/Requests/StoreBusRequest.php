@@ -11,7 +11,7 @@ class StoreBusRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreBusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'bus_name' => 'required|string|max:255',
+            'bus_model' => 'required|string|max:255',
+            'total_seat' => 'required|string|max:255',
         ];
     }
 }

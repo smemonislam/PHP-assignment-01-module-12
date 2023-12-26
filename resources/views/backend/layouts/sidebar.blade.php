@@ -56,9 +56,9 @@
                   
                 {{-- <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Product</span></li> --}}
                 <li class="nav-item"><a href="{{ route('buses.index') }}" class="nav-link" data-key="t-add">Bus</a></li>
-                <li class="nav-item"><a href="{{ route('roads.index') }}" class="nav-link" data-key="t-add">Roads</a></li>
+                {{-- <li class="nav-item"><a href="{{ route('roads.index') }}" class="nav-link" data-key="t-add">Roads</a></li> --}}
                 <li class="nav-item"><a href="{{ route('trips.index') }}" class="nav-link" data-key="t-add">Trips</a></li>
-                <li class="nav-item"><a href="{{ route('tickets.index') }}" class="nav-link" data-key="t-add">Tickets</a></li>
+                {{-- <li class="nav-item"><a href="{{ route('tickets.index') }}" class="nav-link" data-key="t-add">Tickets</a></li> --}}
 
 
             </ul>

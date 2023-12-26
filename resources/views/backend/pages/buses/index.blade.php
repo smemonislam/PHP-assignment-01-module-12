@@ -48,6 +48,7 @@
                                         <th>Sl</th>
                                         <th>Bus Name</th>
                                         <th>Bus Model</th>
+                                        <th>Total Seat</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -57,6 +58,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $bus->bus_name }}</td>
                                         <td>{{ $bus->bus_model }}</td>
+                                        <td>{{ $bus->total_seat }}</td>
                                         <td>                                            
                                             <div class="d-flex">
                                                 <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('buses.edit', $bus->id) }}">
