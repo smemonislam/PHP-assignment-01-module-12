@@ -33,7 +33,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('roads.index') }}" class="btn btn-success"
+                                        <a href="{{ route('locations.index') }}" class="btn btn-success"
                                             id="addproduct-btn"><i class="ri-add-line align-bottom me-1"></i> Back</a>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('roads.store') }}" method="POST">
+                            <form action="{{ route('locations.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">

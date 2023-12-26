@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title','IMS | Edit Road')
+@section('title','IMS | Edit Location')
 @section('content')
 
 
@@ -12,12 +12,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Road -> Edit Road</h4>
+                        <h4 class="mb-sm-0">Location -> Edit Location</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Road</a></li>
-                                <li class="breadcrumb-item active">Edit Road</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Location</a></li>
+                                <li class="breadcrumb-item active">Edit Location</li>
                             </ol>
                         </div>
 
@@ -33,7 +33,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('roads.index') }}" class="btn btn-success"
+                                        <a href="{{ route('locations.index') }}" class="btn btn-success"
                                             id="addproduct-btn"><i class="ri-add-line align-bottom me-1"></i> Back</a>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('roads.update', $road->id) }}" method="POST">
+                            <form action="{{ route('locations.update', $location->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -71,7 +71,7 @@
                                                 Origin
                                                 <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" name="origin" class="form-control" value="{{ old('origin', $road->origin) }}">
+                                            <input type="text" name="origin" class="form-control" value="{{ old('origin', $location->origin) }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 mb-3">
@@ -80,7 +80,7 @@
                                                 Destination
                                                 <span class="text-danger">*</span>
                                             </label>
-                                            <input type="text" name="destination" class="form-control" value="{{ old('destination', $road->destination) }}">
+                                            <input type="text" name="destination" class="form-control" value="{{ old('destination', $location->destination) }}">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-info">Update</button>

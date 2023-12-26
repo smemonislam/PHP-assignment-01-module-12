@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Location extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['origin', 'destination'];
     public function trips(): HasMany
-{
-    return $this->hasMany(Trip::class);
-}
+    {
+        return $this->hasMany(Trip::class);
+    }
 }

@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title','IMS | List of Road')
+@section('title','IMS | List of Location')
 
 @section('content')
 
@@ -12,11 +12,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Road -> List</h4>
+                        <h4 class="mb-sm-0">Location -> List</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Road</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Location</a></li>
                                 <li class="breadcrumb-item active">List</li>
                             </ol>
                         </div>
@@ -32,9 +32,9 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('roads.create') }}" class="btn btn-success"
-                                            id="addRoad-btn"><i class="ri-add-line align-bottom me-1"></i> Add
-                                            Road</a>
+                                        <a href="{{ route('locations.create') }}" class="btn btn-success"
+                                            id="addLocation-btn"><i class="ri-add-line align-bottom me-1"></i> Add
+                                            Location</a>
                                     </div>
                                 </div>
 
@@ -46,26 +46,26 @@
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Road Name</th>
-                                        <th>Road Model</th>
+                                        <th>Location Name</th>
+                                        <th>Location Model</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($roads as $road)
+                                    @foreach ($locations as $location)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $road->origin }}</td>
-                                        <td>{{ $road->destination }}</td>
+                                        <td>{{ $location->origin }}</td>
+                                        <td>{{ $location->destination }}</td>
                                         <td>                                            
                                             <div class="d-flex">
-                                                <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('roads.edit', $road->id) }}">
+                                                <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('locations.edit', $location->id) }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     Edit
                                                 </a>
     
-                                                <form action="{{ route('roads.destroy', $road->id) }}" method="POST">
+                                                <form action="{{ route('locations.destroy', $location->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-sm">

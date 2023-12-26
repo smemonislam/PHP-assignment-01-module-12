@@ -9,12 +9,14 @@ use App\Http\Requests\UpdateLocationRequest;
 
 class LocationController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $locations = Location::latest()->get();
+        return view('backend.pages.locations.index', compact('locations'));
     }
 
     /**
@@ -22,7 +24,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.locations.create');
     }
 
     /**
@@ -30,7 +32,9 @@ class LocationController extends Controller
      */
     public function store(StoreLocationRequest $request)
     {
-        //
+        Location::create($request->validated());
+
+        return redirect()->back()->with('success', 'Locations created successfully.');
     }
 
     /**
@@ -46,7 +50,7 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view('backend.pages.locations.edit', compact('location'));
     }
 
     /**
@@ -54,7 +58,9 @@ class LocationController extends Controller
      */
     public function update(UpdateLocationRequest $request, Location $location)
     {
-        //
+        $location->update($request->validated());
+
+        return redirect()->back()->with('success', 'Locations created successfully.');
     }
 
     /**
@@ -62,6 +68,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+        return redirect()->back()->with('success', 'Locations deleted successfully.');
     }
 }
