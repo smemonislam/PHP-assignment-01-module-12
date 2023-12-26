@@ -43,8 +43,15 @@
                         <div class="card-body">
                             @if(session()->has('success'))
                                 <div class="alert alert-success" id="success-message">{{ session('success') }}</div>
+                                <script>
+                                    setTimeout(function() {
+                                        var successMessage = document.getElementById('success-message');
+                                        if (successMessage) {
+                                            successMessage.style.display = 'none';
+                                        }
+                                    }, 5000);
+                                </script>
                             @endif
-
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>

@@ -39,9 +39,10 @@
 
         @include('backend.components.settings')
 
+        
+
         <!-- All Scripts -->
         @include('backend.components.scripts')
-
     </body>
 
 </html>

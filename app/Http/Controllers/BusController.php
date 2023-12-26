@@ -70,4 +70,6 @@ class BusController extends Controller
         $bus->delete();
         return redirect()->back()->with('success', 'Buses deleted successfully.');
     }
+
+    
 }
