@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('seat_allocations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('trip_id')->constrained('trips')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('seat_number');
             $table->timestamps();
         });
     }
@@ -22,6 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seat_allocations');
+        Schema::table('seat_allocations', function (Blueprint $table) {
+            $table->dropForeign(['trip_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropIfExists();
+        });
     }
 };
