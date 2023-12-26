@@ -33,7 +33,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('tickets.index') }}" class="btn btn-success"
+                                        <a href="{{ route('seat-alloactions.index') }}" class="btn btn-success"
                                             id="addproduct-btn"><i class="ri-add-line align-bottom me-1"></i> Back</a>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('tickets.store') }}" method="POST">
+                            <form action="{{ route('seat-alloactions.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6 mb-3">
@@ -76,7 +76,7 @@
                                                 <select class="form-select" name="trip_id" id="tripId">
                                                     <option disabled>Choose Loactions...</option>
                                                     @foreach($trips as $trip)
-                                                        <option value="{{ $trip->bus->id }}">{{ $trip->bus->bus_name }}</option>
+                                                        <option value="{{ $trip->id }}">{{ $trip->bus->bus_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </button>
@@ -95,7 +95,7 @@
                                                 <select class="form-select" name="trip_id" id="tripId">
                                                     <option disabled>Choose Loactions...</option>
                                                     @foreach($trips as $trip)
-                                                        <option value="{{ $trip->road->id }}">{{ $trip->road->origin }}-{{ $trip->road->destination }}</option>
+                                                        <option value="{{ $trip->id }}">{{ $trip->location->origin }}-{{ $trip->location->destination }}</option>
                                                     @endforeach
                                                 </select>
                                             </button>
@@ -131,7 +131,7 @@
                                                 <select class="form-select" name="seat_number">
                                                     <option disabled>Choose Seat ...</option>
                                                     @for ($i = 1; $i <= 36; $i++)    
-                                                        @if( ! in_array($i, $tickets))                                                    
+                                                        @if( ! in_array($i, $seatAllocations))                                                    
                                                             <option value="{{ $i }}">{{ $i }}</option>
                                                         @endif
                                                     @endfor                                                     

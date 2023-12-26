@@ -11,7 +11,7 @@ class StoreSeatAllocationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSeatAllocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'trip_id'       => 'required|numeric',
+            'seat_number'   => 'required|string|max:255',
         ];
     }
 }

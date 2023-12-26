@@ -10,8 +10,9 @@ class User extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'email', 'phone'];
     public function seatAllocations(): HasMany
-{
-    return $this->hasMany(SeatAllocation::class);
-}
+    {
+        return $this->hasMany(SeatAllocation::class);
+    }
 }

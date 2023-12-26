@@ -32,7 +32,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('tickets.create') }}" class="btn btn-success"
+                                        <a href="{{ route('seat-alloactions.create') }}" class="btn btn-success"
                                             id="addTicket-btn"><i class="ri-add-line align-bottom me-1"></i> Add
                                             Ticket</a>
                                     </div>
@@ -63,13 +63,13 @@
                                         
                                         <td>                                            
                                             <div class="d-flex">
-                                                <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('tickets.edit', $ticket->id) }}">
+                                                <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('seat-alloactions.edit', $ticket->id) }}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     Edit
                                                 </a>
     
-                                                <form action="{{ route('tickets.destroy', $ticket->id) }}" method="POST">
+                                                <form action="{{ route('seat-alloactions.destroy', $ticket->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger btn-sm">

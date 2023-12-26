@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trip;
+use App\Models\User;
 use App\Models\SeatAllocation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSeatAllocationRequest;
@@ -14,7 +16,7 @@ class SeatAllocationController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.pages.seat-allocations.index');
     }
 
     /**
@@ -22,7 +24,11 @@ class SeatAllocationController extends Controller
      */
     public function create()
     {
-        //
+        $trips = Trip::with(['bus', 'location'])->latest()->get();
+
+        $seatAllocations = SeatAllocation::pluck('seat_number')->toArray();
+
+        return view('backend.pages.seat-allocations.create', compact('trips', 'seatAllocations'));
     }
 
     /**
@@ -30,7 +36,23 @@ class SeatAllocationController extends Controller
      */
     public function store(StoreSeatAllocationRequest $request)
     {
-        //
+        $data_user = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ];
+
+        $user = User::create($data_user);
+
+        $data_trip = [
+            'trip_id' => $request->input('trip_id'),
+            'user_id' => $user->id,
+            'seat_number' => $request->input('seat_number'),
+        ];
+
+        SeatAllocation::create($data_trip);
+
+        return redirect()->route('seat-alloactions.index')->with('status', 'Tickets created successfully.');
     }
 
     /**
