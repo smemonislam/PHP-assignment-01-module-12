@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\SeatAllocation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BusController;
-use App\Http\Controllers\RoadController;
 use App\Http\Controllers\TripController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SeatAllocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,6 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('/buses', BusController::class);
-Route::resource('/roads', RoadController::class);
+Route::resource('/locations', LocationController::class);
 Route::resource('/trips', TripController::class);
-Route::resource('/tickets', TicketController::class);
+Route::resource('/seat-alloactions', SeatAllocationController::class);
