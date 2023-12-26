@@ -65,6 +65,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('buses.index') }}" class="nav-link" data-key="t-add">Bus</a> 
                                 <a href="{{ route('roads.index') }}" class="nav-link" data-key="t-add">Roads</a> 
+                                <a href="{{ route('trips.index') }}" class="nav-link" data-key="t-add">Trips</a> 
                             </li>
                         </ul>
                     </div>

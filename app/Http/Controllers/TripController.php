@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bus;
+use App\Models\Road;
 use App\Models\Trip;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTripRequest;
@@ -14,7 +16,8 @@ class TripController extends Controller
      */
     public function index()
     {
-        //
+        $trips = Trip::with(['bus'])->latest()->get();
+        return view('backend.pages.trips.index', compact('trips'));
     }
 
     /**
@@ -22,7 +25,9 @@ class TripController extends Controller
      */
     public function create()
     {
-        //
+        $buses = Bus::latest()->get();
+        $roads = Road::latest()->get();
+        return view('backend.pages.trips.create', compact('buses', 'roads'));
     }
 
     /**
@@ -30,7 +35,9 @@ class TripController extends Controller
      */
     public function store(StoreTripRequest $request)
     {
-        //
+        Trip::create($request->validated());
+
+        return redirect()->back()->with('success', 'Trips created successfully.');
     }
 
     /**
@@ -46,7 +53,9 @@ class TripController extends Controller
      */
     public function edit(Trip $trip)
     {
-        //
+        $buses = Bus::latest()->get();
+        $roads = Road::latest()->get();
+        return view('backend.pages.trips.edit', compact('trip', 'buses', 'roads'));
     }
 
     /**
@@ -54,7 +63,9 @@ class TripController extends Controller
      */
     public function update(UpdateTripRequest $request, Trip $trip)
     {
-        //
+        $trip->update($request->validated());
+
+        return redirect()->back()->with('success', 'Trips created successfully.');
     }
 
     /**
@@ -62,6 +73,7 @@ class TripController extends Controller
      */
     public function destroy(Trip $trip)
     {
-        //
+        $trip->delete();
+        return redirect()->back()->with('success', 'Trips deleted successfully.');
     }
 }
