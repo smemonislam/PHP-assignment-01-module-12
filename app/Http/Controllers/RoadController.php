@@ -14,7 +14,8 @@ class RoadController extends Controller
      */
     public function index()
     {
-        //
+        $roads = Road::latest()->get();
+        return view('backend.pages.roads.index', compact('roads'));
     }
 
     /**
@@ -22,7 +23,7 @@ class RoadController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.roads.create');
     }
 
     /**
@@ -30,7 +31,9 @@ class RoadController extends Controller
      */
     public function store(StoreRoadRequest $request)
     {
-        //
+        Road::create($request->validated());
+
+        return redirect()->back()->with('success', 'Roads created successfully.');
     }
 
     /**
@@ -46,7 +49,7 @@ class RoadController extends Controller
      */
     public function edit(Road $road)
     {
-        //
+        return view('backend.pages.roads.edit', compact('road'));
     }
 
     /**
@@ -54,7 +57,9 @@ class RoadController extends Controller
      */
     public function update(UpdateRoadRequest $request, Road $road)
     {
-        //
+        $road->update($request->validated());
+
+        return redirect()->back()->with('success', 'Roads created successfully.');
     }
 
     /**
@@ -62,6 +67,7 @@ class RoadController extends Controller
      */
     public function destroy(Road $road)
     {
-        //
+        $road->delete();
+        return redirect()->back()->with('success', 'Roads deleted successfully.');
     }
 }

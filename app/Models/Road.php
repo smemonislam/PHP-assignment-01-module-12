@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Road extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['origin', 'destination'];
 }

@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title','IMS | List of Sales')
+@section('title','IMS | List of Road')
 
 @section('content')
 
@@ -12,11 +12,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Sale -> List</h4>
+                        <h4 class="mb-sm-0">Road -> List</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Sales</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Road</a></li>
                                 <li class="breadcrumb-item active">List</li>
                             </ol>
                         </div>
@@ -32,40 +32,49 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('sales.create') }}" class="btn btn-success"
-                                            id="addSale-btn"><i class="ri-add-line align-bottom me-1"></i> Add
-                                            Sale</a>
+                                        <a href="{{ route('roads.create') }}" class="btn btn-success"
+                                            id="addRoad-btn"><i class="ri-add-line align-bottom me-1"></i> Add
+                                            Road</a>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
-                            @if(session()->has('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
-                            @endif
+                        <div class="card-body">                            
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total Price</th>
-                                        <th>Date</th>
+                                        <th>Road Name</th>
+                                        <th>Road Model</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach ($transactions as $transaction)
+                                    @foreach ($roads as $road)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $transaction->product_name }}</td>
-                                        <td>{{ $transaction->price }}</td>
-                                        <td>{{ $transaction->quantity }}</td>
-                                        <td>{{ $transaction->price * $transaction->quantity }}</td>
-                                        <td>{{ $transaction->created_at }}</td>
+                                        <td>{{ $road->origin }}</td>
+                                        <td>{{ $road->destination }}</td>
+                                        <td>                                            
+                                            <div class="d-flex">
+                                                <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('roads.edit', $road->id) }}">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </a>
+    
+                                                <form action="{{ route('roads.destroy', $road->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
