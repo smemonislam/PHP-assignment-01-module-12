@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBusRequest extends FormRequest
+class UpdateSeatAllocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,8 +22,7 @@ class UpdateBusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'bus_name' => 'required|string|max:255',
-            'bus_model' => 'required|string|max:255',
+            //
         ];
     }
 }

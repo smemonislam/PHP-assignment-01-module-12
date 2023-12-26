@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Trip;
+use App\Models\SeatAllocation;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTripRequest;
-use App\Http\Requests\UpdateTripRequest;
+use App\Http\Requests\StoreSeatAllocationRequest;
+use App\Http\Requests\UpdateSeatAllocationRequest;
 
-class TripController extends Controller
+class SeatAllocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class TripController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTripRequest $request)
+    public function store(StoreSeatAllocationRequest $request)
     {
         //
     }
@@ -36,7 +36,7 @@ class TripController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Trip $trip)
+    public function show(SeatAllocation $seatAllocation)
     {
         //
     }
@@ -44,7 +44,7 @@ class TripController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Trip $trip)
+    public function edit(SeatAllocation $seatAllocation)
     {
         //
     }
@@ -52,7 +52,7 @@ class TripController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTripRequest $request, Trip $trip)
+    public function update(UpdateSeatAllocationRequest $request, SeatAllocation $seatAllocation)
     {
         //
     }
@@ -60,7 +60,7 @@ class TripController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Trip $trip)
+    public function destroy(SeatAllocation $seatAllocation)
     {
         //
     }

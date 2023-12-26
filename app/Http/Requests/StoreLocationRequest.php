@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRoadRequest extends FormRequest
+class StoreLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,8 +22,7 @@ class StoreRoadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'origin'    => 'required|string|max:255',
-            'destination'    => 'required|string|max:255',
+            //
         ];
     }
 }
