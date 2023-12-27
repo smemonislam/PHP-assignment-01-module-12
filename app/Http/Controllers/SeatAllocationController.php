@@ -61,7 +61,7 @@ class SeatAllocationController extends Controller
         SeatAllocation::create($data_trip);
 
 
-        return redirect()->route('seat-allocations.index')->with('status', 'Tickets created successfully.');
+        return redirect()->route('seat-allocations.index')->with('success', 'Tickets created successfully.');
     }
 
     /**

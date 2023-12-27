@@ -73,8 +73,8 @@
                                         <td>{{ $seatAllocation->user->name }}</td>
                                         <td>{{ $seatAllocation->trip->bus->bus_name }}</td>
                                         <td>{{ $seatAllocation->trip->location->origin }}-{{ $seatAllocation->trip->location->destination }}</td>
-                                        <td>{{ $seatAllocation->trip->departure_time }}</td>
-                                        <td>{{ $seatAllocation->trip->arrival_time }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($seatAllocation->trip->departure_time)->format('h:i A') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($seatAllocation->trip->arrival_time)->format('h:i A') }}</td>
                                         <td>{{ $availableSeatCount }}</td>
                                         <td>{{ $seatAllocation->seat_number }}</td>
                                     </tr>
