@@ -33,7 +33,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('seat-alloactions.index') }}" class="btn btn-success"
+                                        <a href="{{ route('seat-allocations.index') }}" class="btn btn-success"
                                             id="addproduct-btn"><i class="ri-add-line align-bottom me-1"></i> Back</a>
                                     </div>
                                 </div>
@@ -61,118 +61,46 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('seat-alloactions.store') }}" method="POST">
+                            @if(session()->has('trip_id'))
+                            <form action="{{ route('seat-allocations.store') }}" method="POST">
                                 @csrf
+                            
                                 <div class="row">
+                                    <input type="hidden" name="trip_id" value="{{ session('trip_id') }}">
+                            
                                     <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                Bus
-                                                <span class="text-danger">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <div class="input-group">
-                                                <select class="form-select" name="trip_id" id="tripId">
-                                                    <option disabled>Choose Loactions...</option>
-                                                    @foreach($trips as $trip)
-                                                        <option value="{{ $trip->id }}">{{ $trip->bus->bus_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </button>
-                                            </div>
-                                        </div>
+                                        <label for="seatNumber" class="form-label">Seat Number<span class="text-danger">*</span></label>
+                                        <select class="form-select" name="seat_number" id="seatNumber">
+                                            <option disabled selected>Choose Seat ...</option>
+                                            @for ($i = 1; $i <= 36; $i++)
+                                                @if( ! in_array($i, $seatAllocations))
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endif
+                                            @endfor
+                                        </select>
                                     </div>
+                            
                                     <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                Trip Location
-                                                <span class="text-danger">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <div class="input-group">
-                                                <select class="form-select" name="trip_id" id="tripId">
-                                                    <option disabled>Choose Loactions...</option>
-                                                    @foreach($trips as $trip)
-                                                        <option value="{{ $trip->id }}">{{ $trip->location->origin }}-{{ $trip->location->destination }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </button>
-                                            </div>
-                                        </div>
+                                        <label for="userName" class="form-label">User Name<span class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="userName" class="form-control" value="{{ old('name') }}">
                                     </div>
+                            
                                     <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                Trip Date
-                                                <span class="text-danger">
-                                                    *
-                                                </span>
-                                            </label>
-                                            <div class="input-group">
-                                                <select class="form-select" name="trip_id" id="tripId">
-                                                    <option disabled>Choose Date...</option>
-                                                    @foreach($trips as $trip)
-                                                        <option value="{{ $trip->id }}">{{ $trip->date }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </button>
-                                            </div>
-                                        </div>
+                                        <label for="userEmail" class="form-label">User Email<span class="text-danger">*</span></label>
+                                        <input type="email" name="email" id="userEmail" class="form-control" value="{{ old('email') }}">
                                     </div>
+                            
                                     <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                Seat Number
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="input-group">
-                                                <select class="form-select" name="seat_number">
-                                                    <option disabled>Choose Seat ...</option>
-                                                    @for ($i = 1; $i <= 36; $i++)    
-                                                        @if( ! in_array($i, $seatAllocations))                                                    
-                                                            <option value="{{ $i }}">{{ $i }}</option>
-                                                        @endif
-                                                    @endfor                                                     
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>     
-                                    
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                User Name
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}">
-                                        </div>
+                                        <label for="userPhone" class="form-label">User Phone<span class="text-danger">*</span></label>
+                                        <input type="tel" name="phone" id="userPhone" class="form-control" value="{{ old('phone') }}">
                                     </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                User Email
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="mb-lg-0">
-                                            <label for="" class="form-label">
-                                                User Phone
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input type="phone" name="phone" class="form-control" value="{{ old('phone') }}">
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn btn-info">Save</button>
+                                </div>
+                            
+                                <div class="col-lg-12 mb-3">
+                                    <button type="submit" class="btn btn-info">Buy Ticket</button>
                                 </div>
                             </form>
+                            @endif
                         </div>
                         <!-- end card body -->
                     </div>

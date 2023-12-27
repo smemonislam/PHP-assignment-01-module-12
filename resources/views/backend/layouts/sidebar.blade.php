@@ -58,7 +58,7 @@
                 <li class="nav-item"><a href="{{ route('buses.index') }}" class="nav-link" data-key="t-add">Bus</a></li>
                 <li class="nav-item"><a href="{{ route('locations.index') }}" class="nav-link" data-key="t-add">Locations</a></li>
                 <li class="nav-item"><a href="{{ route('trips.index') }}" class="nav-link" data-key="t-add">Trips</a></li>
-                <li class="nav-item"><a href="{{ route('seat-alloactions.index') }}" class="nav-link" data-key="t-add">Seat Allocations</a></li>
+                <li class="nav-item"><a href="{{ route('seat-allocations.index') }}" class="nav-link" data-key="t-add">Seat Allocations</a></li>
 
 
             </ul>

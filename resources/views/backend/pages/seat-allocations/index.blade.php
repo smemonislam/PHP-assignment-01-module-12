@@ -32,7 +32,7 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                        <a href="{{ route('seat-alloactions.create') }}" class="btn btn-success"
+                                        <a href="{{ route('seat-allocations.create') }}" class="btn btn-success"
                                             id="addTicket-btn"><i class="ri-add-line align-bottom me-1"></i> Add
                                             Ticket</a>
                                     </div>
@@ -41,46 +41,44 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">                            
+                        <div class="card-body">    
+                            @if(session()->has('success'))
+                                <div class="alert alert-success" id="success-message">{{ session('success') }}</div>
+                                <script>
+                                    setTimeout(function() {
+                                        var successMessage = document.getElementById('success-message');
+                                        if (successMessage) {
+                                            successMessage.style.display = 'none';
+                                        }
+                                    }, 5000);
+                                </script>
+                            @endif                        
                             <table id="example1" class="table table-bordered table-sTicketed">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
                                         <th>User Name</th>
                                         <th>Bus Name</th>
-                                        <th>Road</th>
+                                        <th>Location</th>
                                         <th>Depature Time</th>
                                         <th>Arrival Time</th>
-                                        <th>Date</th>
+                                        <th>Avaiable Seat</th>
+                                        <th>Purchse Seat Number</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($tickets as $ticket)
+                                    @foreach ($seatAllocations as $seatAllocation)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ticket->user->name }}</td>
-                                        <td>{{ $ticket->bus->bus_name }}</td>
-                                        
-                                        <td>                                            
-                                            <div class="d-flex">
-                                                <a class="btn btn-info btn-sm d-inline-block me-2" href="{{ route('seat-alloactions.edit', $ticket->id) }}">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    Edit
-                                                </a>
-    
-                                                <form action="{{ route('seat-alloactions.destroy', $ticket->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                        <td>{{ $seatAllocation->user->name }}</td>
+                                        <td>{{ $seatAllocation->trip->bus->bus_name }}</td>
+                                        <td>{{ $seatAllocation->trip->location->origin }}-{{ $seatAllocation->trip->location->destination }}</td>
+                                        <td>{{ $seatAllocation->trip->departure_time }}</td>
+                                        <td>{{ $seatAllocation->trip->arrival_time }}</td>
+                                        <td>{{ $availableSeatCount }}</td>
+                                        <td>{{ $seatAllocation->seat_number }}</td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

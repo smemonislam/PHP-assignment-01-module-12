@@ -24,4 +24,4 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::resource('/buses', BusController::class);
 Route::resource('/locations', LocationController::class);
 Route::resource('/trips', TripController::class);
-Route::resource('/seat-alloactions', SeatAllocationController::class);
+Route::resource('/seat-allocations', SeatAllocationController::class)->only(['index', 'create', 'store']);
