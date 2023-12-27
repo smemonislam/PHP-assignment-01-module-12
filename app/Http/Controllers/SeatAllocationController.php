@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bus;
 use App\Models\User;
 use App\Models\SeatAllocation;
 use App\Http\Controllers\Controller;

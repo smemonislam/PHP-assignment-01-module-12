@@ -28,7 +28,7 @@
             <div class="col-xl-12 col-lg-12">
                 <div>
                     <div class="card">
-                        <div class="card-header border-0">
+                        {{-- <div class="card-header border-0">
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
@@ -39,7 +39,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /.card-header -->
                         <div class="card-body">    
                             @if(session()->has('success'))
