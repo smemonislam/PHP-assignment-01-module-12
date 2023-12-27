@@ -129,7 +129,7 @@
                                             <input type="datetime-local" name="date" class="form-control" value="{{ old('date') }}">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info">Save</button>
+                                    <button type="submit" class="btn btn-info">Add Trip</button>
                                 </div>
                             </form>
                         </div>
