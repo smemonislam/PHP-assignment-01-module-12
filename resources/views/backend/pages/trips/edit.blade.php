@@ -96,7 +96,7 @@
                                                 <select class="form-select" name="location_id">
                                                     <option disabled>Choose locations...</option>
                                                     @foreach($locations as $location)
-                                                        <option value="{{ $location->id }}" @selected(old('location_id', $trip->location_id) == $location->id)>{{ $location->origin }}</option>
+                                                        <option value="{{ $location->id }}" @selected(old('location_id', $trip->location_id) == $location->id)>{{ $location->origin }}-{{ $location->destination }}</option>
                                                     @endforeach                                                   
                                                 </select>
                                             </button>

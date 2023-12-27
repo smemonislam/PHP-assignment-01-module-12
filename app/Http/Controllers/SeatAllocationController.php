@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bus;
 use App\Models\User;
 use App\Models\SeatAllocation;
 use App\Http\Controllers\Controller;
@@ -17,15 +18,33 @@ class SeatAllocationController extends Controller
     {
         $seatAllocations = SeatAllocation::with(['trip.bus', 'trip.location', 'user'])
             ->latest()
-            ->get();
+            ->get()
+            ->map(function ($seatAllocation) {
 
-        $allocatedSeatNumbers = $seatAllocations->pluck('seat_number')->toArray();
+                $bus = $seatAllocation->trip->bus;
+                $location = $seatAllocation->trip->location;
+                $departureTime = $seatAllocation->trip;
+                $arrivalTime = $seatAllocation->trip;
+                $userName = $seatAllocation->user->name;
+                $remainingSeats = $bus->total_seat - $bus->seatAllocations->count();
 
+                return [
+                    'seat_allocation_id' => $seatAllocation->id,
+                    'trip_id' => $seatAllocation->trip_id,
+                    'bus_id' => $bus->id,
+                    'user_name' => $userName,
+                    'bus_name' => $bus->bus_name,
+                    'origin' => $location->origin,
+                    'destination' => $location->destination,
+                    'departure_time' => $departureTime->departure_time,
+                    'arrival_time' => $arrivalTime->arrival_time,
+                    'total_seats' => $bus->total_seat,
+                    'remaining_seats' => $remainingSeats,
+                    'seat_number' => $seatAllocation->seat_number,
+                ];
+            });
 
-        $availableSeatCount = 36 - count($allocatedSeatNumbers);
-
-        //dd($seatAllocations);
-        return view('backend.pages.seat-allocations.index', compact('seatAllocations', 'availableSeatCount'));
+        return view('backend.pages.seat-allocations.index', compact('seatAllocations'));
     }
 
     /**
@@ -53,13 +72,12 @@ class SeatAllocationController extends Controller
 
         $data_trip = [
             'trip_id' => $request->input('trip_id'),
+            'bus_id' => $request->input('bus_id'),
             'user_id' => $user->id,
             'seat_number' => $request->input('seat_number'),
         ];
 
-
         SeatAllocation::create($data_trip);
-
 
         return redirect()->route('seat-allocations.index')->with('success', 'Tickets created successfully.');
     }

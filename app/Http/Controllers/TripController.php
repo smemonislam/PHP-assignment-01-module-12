@@ -35,8 +35,15 @@ class TripController extends Controller
      */
     public function store(StoreTripRequest $request)
     {
-        $trips = Trip::create($request->validated());
-        return redirect()->route('seat-allocations.create')->with('trip_id', $trips->id);
+
+        $trip = Trip::create($request->validated());
+        $bus = Bus::find($request->bus_id);
+        $busDetails = $trip->bus;
+        return redirect()->route('seat-allocations.create')->with([
+            'trip_id' => $trip->id,
+            'bus_id' => $busDetails->id,
+            'total_seat' => $busDetails->total_seat,
+        ]);
     }
 
     /**

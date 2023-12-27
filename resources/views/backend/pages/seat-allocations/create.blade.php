@@ -61,19 +61,20 @@
                                     </ul>
                                 </div>
                             @endif
-                            @if(session()->has('trip_id'))
+                            @if(session()->has('trip_id') && session()->has('bus_id') && session()->has('total_seat'))
                             <form action="{{ route('seat-allocations.store') }}" method="POST">
                                 @csrf
                             
                                 <div class="row">
                                     <input type="hidden" name="trip_id" value="{{ session('trip_id') }}">
+                                    <input type="hidden" name="bus_id" value="{{ session('bus_id') }}">
                             
                                     <div class="col-lg-6 mb-3">
                                         <label for="seatNumber" class="form-label">Seat Number<span class="text-danger">*</span></label>
                                         <select class="form-select" name="seat_number" id="seatNumber">
                                             <option disabled selected>Choose Seat ...</option>
-                                            @for ($i = 1; $i <= 36; $i++)
-                                                @if( ! in_array($i, $seatAllocations))
+                                            @for ($i = 1; $i <= session('total_seat'); $i++)
+                                                @if (!in_array($i, $seatAllocations))
                                                     <option value="{{ $i }}">{{ $i }}</option>
                                                 @endif
                                             @endfor

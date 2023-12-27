@@ -67,16 +67,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($seatAllocations as $seatAllocation)
+                                    @foreach ($seatAllocations as $allocation)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $seatAllocation->user->name }}</td>
-                                        <td>{{ $seatAllocation->trip->bus->bus_name }}</td>
-                                        <td>{{ $seatAllocation->trip->location->origin }}-{{ $seatAllocation->trip->location->destination }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($seatAllocation->trip->departure_time)->format('h:i A') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($seatAllocation->trip->arrival_time)->format('h:i A') }}</td>
-                                        <td>{{ $availableSeatCount }}</td>
-                                        <td>{{ $seatAllocation->seat_number }}</td>
+                                        <td>{{ $allocation['user_name'] }}</td>
+                                        <td>{{ $allocation['bus_name'] }}</td>
+                                        <td>{{ $allocation['origin'] }}-{{ $allocation['destination'] }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($allocation['departure_time'])->format('h:i A') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($allocation['arrival_time'])->format('h:i A') }}</td>
+                                        <td>{{ $allocation['remaining_seats'] }}</td>
+                                        <td>{{ $allocation['seat_number'] }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

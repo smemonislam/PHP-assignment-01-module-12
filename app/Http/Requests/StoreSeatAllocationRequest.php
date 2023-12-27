@@ -22,8 +22,9 @@ class StoreSeatAllocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'trip_id'       => 'required|numeric',
-            'seat_number'   => 'required|string|max:255',
+            'trip_id' => 'required|numeric',
+            'bus_id' => 'required|numeric',
+            'seat_number' => 'required|string|max:255',
         ];
     }
 }
